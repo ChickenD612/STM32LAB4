@@ -1,54 +1,21 @@
-18:30:20 **** Incremental Build of configuration Debug for project LAB4 ****
+19:04:51 **** Incremental Build of configuration Debug for project LAB4 ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/button.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/button.d" -MT"Core/Src/button.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/button.o"
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-In file included from ../Core/Src/button.c:8:
-../Core/Inc/button.h:11:22: error: 'GPIO_PIN_SET' undeclared here (not in a function)
-   11 | #define NORMAL_STATE GPIO_PIN_SET
-      |                      ^~~~~~~~~~~~
-../Core/Src/button.c:10:15: note: in expansion of macro 'NORMAL_STATE'
-   10 | int KeyReg0 = NORMAL_STATE;
-      |               ^~~~~~~~~~~~
-../Core/Src/button.c: In function 'subKeyProcess':
-../Core/Src/button.c:18:2: warning: implicit declaration of function 'HAL_GPIO_TogglePin' [-Wimplicit-function-declaration]
-   18 |  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-      |  ^~~~~~~~~~~~~~~~~~
-../Core/Src/button.c:18:21: error: 'LED_YELLOW_GPIO_Port' undeclared (first use in this function)
-   18 |  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-      |                     ^~~~~~~~~~~~~~~~~~~~
-../Core/Src/button.c:18:21: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/button.c:18:43: error: 'LED_YELLOW_Pin' undeclared (first use in this function)
-   18 |  HAL_GPIO_TogglePin(LED_YELLOW_GPIO_Port, LED_YELLOW_Pin);
-      |                                           ^~~~~~~~~~~~~~
-../Core/Src/button.c: In function 'getKeyInput':
-../Core/Src/button.c:24:12: warning: implicit declaration of function 'HAL_GPIO_ReadPin' [-Wimplicit-function-declaration]
-   24 |  KeyReg2 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
-      |            ^~~~~~~~~~~~~~~~
-../Core/Src/button.c:24:29: error: 'Button1_GPIO_Port' undeclared (first use in this function)
-   24 |  KeyReg2 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
-      |                             ^~~~~~~~~~~~~~~~~
-../Core/Src/button.c:24:48: error: 'Button1_Pin' undeclared (first use in this function)
-   24 |  KeyReg2 = HAL_GPIO_ReadPin(Button1_GPIO_Port, Button1_Pin);
-      |                                                ^~~~~~~~~~~
-In file included from ../Core/Src/button.c:8:
-../Core/Inc/button.h:12:23: error: 'GPIO_PIN_RESET' undeclared (first use in this function)
-   12 | #define PRESSED_STATE GPIO_PIN_RESET
-      |                       ^~~~~~~~~~~~~~
-../Core/Src/button.c:28:18: note: in expansion of macro 'PRESSED_STATE'
-   28 |    if(KeyReg2 == PRESSED_STATE){
-      |                  ^~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:43: Core/Src/button.o] Error 1
-make: *** Waiting for unfinished jobs....
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:92:33: error: invalid type argument of unary '*' (have 'TIM_HandleTypeDef' {aka 'struct <anonymous>'})
-   92 |   HAL_TIM_PeriodElapsedCallback(*htim2);
-      |                                 ^~~~~~
-../Core/Src/main.c: In function 'HAL_TIM_PeriodElapsedCallback':
-../Core/Src/main.c:220:2: warning: implicit declaration of function 'timerRun' [-Wimplicit-function-declaration]
-  220 |  timerRun();
-      |  ^~~~~~~~
-../Core/Src/main.c:221:2: warning: implicit declaration of function 'getKeyInput' [-Wimplicit-function-declaration]
-  221 |  getKeyInput();
-      |  ^~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:43: Core/Src/main.o] Error 1
-"make -j12 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-gcc -o "LAB4.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\Microcontroller\LAB4\SOURCE_CODE\LAB4\STM32F103C6UX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LAB4.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: LAB4.elf
+ 
+arm-none-eabi-size   LAB4.elf 
+arm-none-eabi-objdump -h -S  LAB4.elf  > "LAB4.list"
+arm-none-eabi-objcopy  -O ihex  LAB4.elf  "LAB4.hex"
+arm-none-eabi-objcopy  -O binary  LAB4.elf  "LAB4.bin"
+   text	   data	    bss	    dec	    hex	filename
+   7184	     40	   1648	   8872	   22a8	LAB4.elf
+Finished building: default.size.stdout
+ 
+Finished building: LAB4.hex
+Finished building: LAB4.bin
+ 
+ 
+Finished building: LAB4.list
+ 
