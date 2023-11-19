@@ -13,7 +13,7 @@ char str[50];
 void uart_communication_fsm(){
 	switch (status_communicate){
 		case WAIT_CMD_RST:
-			if (command_flag){
+			if (command_flag == 1){
 				command_flag = 0;
 				if (is_RST()){
 					status_communicate = SEND_ADC;
@@ -27,9 +27,9 @@ void uart_communication_fsm(){
 			if (timer1_flag == 1){
 				setTimer1(300);
 				HAL_UART_Transmit(&huart2, (void *) str, sprintf(str, "!ADC=%.4d#", ADC_value), 1000);
-                HAL_GPIO_TogglePin(LED_RED_GPIO_Port,LED_RED_Pin);
+            	HAL_GPIO_TogglePin(LED_RED_GPIO_Port,LED_RED_Pin);
 			}
-			if (command_flag){
+			if (command_flag == 1){
 				command_flag = 0;
 				if (is_OK()){
 					status_communicate = WAIT_CMD_RST;
@@ -46,14 +46,18 @@ int is_RST(){
 	if (length_of_command == 3 && command_data[0] == 0x52 && command_data[1] == 0x53 && command_data[2] == 0x54){
 		return 1;
 	}
-
+	if (length_of_command == 3 && command_data[0] == 0x72 && command_data[1] == 0x73 && command_data[2] == 0x74){
+		return 1;
+	}
 	return 0;
 }
 
 int is_OK(){
-	if (length_of_command == 2 && command_data[0] == 0x4f && command_data[1] == 0x4b){
-			return 1;
-		}
-
-		return 0;
+	if (length_of_command == 2 && command_data[0] == 0x4F && command_data[1] == 0x4B){
+		return 1;
+	}
+	if (length_of_command == 2 && command_data[0] == 0x6F && command_data[1] == 0x6B){
+		return 1;
+	}
+	return 0;
 }
