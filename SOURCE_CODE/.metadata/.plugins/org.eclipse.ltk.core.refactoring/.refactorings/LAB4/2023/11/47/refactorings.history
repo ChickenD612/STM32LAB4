@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;LAB4/Core/Inc/uart_communication.h&apos; to &apos;uart_communication_fsm.h&apos;" description="Rename resource &apos;uart_communication.h&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/uart_communication.h" name="uart_communication_fsm.h" stamp="1700406916747" updateReferences="true"/>
+</session>
