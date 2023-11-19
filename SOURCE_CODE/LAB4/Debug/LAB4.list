@@ -177,7 +177,7 @@ void command_parser_fsm () {
  80001dc:	2000008c 	.word	0x2000008c
 
 080001e0 <HAL_UART_RxCpltCallback>:
-//uint8_t temp = 0;
+
 uint8_t buffer[MAX_BUFFER_SIZE];
 uint8_t index_buffer = 0;
 uint8_t buffer_flag = 0;
